@@ -1,0 +1,24 @@
+{
+  "name": "zouhri-fragrance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Boutique e-commerce premium ZOUHRI FRAGRANCE - Next.js + Supabase + PostgreSQL",
+  "workspaces": [
+    "applications/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @zouhri/boutique",
+    "dev:reseau": "npm run dev:reseau --workspace @zouhri/boutique",
+    "build": "npm run build --workspace @zouhri/boutique",
+    "start": "npm run start --workspace @zouhri/boutique",
+    "lint": "npm run lint --workspace @zouhri/boutique",
+    "typecheck": "npm run typecheck --workspace @zouhri/boutique",
+    "test": "npm run test --workspace @zouhri/boutique",
+    "test:e2e": "npm run test:e2e --workspace @zouhri/boutique",
+    "db:migrate": "supabase db push",
+    "db:reset": "supabase db reset"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

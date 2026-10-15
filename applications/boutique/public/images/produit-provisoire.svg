@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-label="Image produit provisoire">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F7F3EA"/>
+      <stop offset="100%" stop-color="#EDE6D7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#g)"/>
+  <rect x="300" y="360" width="200" height="280" rx="24" fill="none" stroke="#B58A3A" stroke-width="4"/>
+  <rect x="366" y="300" width="68" height="70" rx="10" fill="none" stroke="#B58A3A" stroke-width="4"/>
+  <circle cx="400" cy="500" r="52" fill="none" stroke="#94702B" stroke-width="3"/>
+  <text x="400" y="512" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#94702B">ZF</text>
+  <text x="400" y="720" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#77736B">Image provisoire</text>
+  <text x="400" y="756" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" letter-spacing="4" fill="#9C978D">ZOUHRI FRAGRANCE</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Image catégorie provisoire">
+  <defs>
+    <linearGradient id="gc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1C1B19"/>
+      <stop offset="100%" stop-color="#2A2823"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#gc)"/>
+  <circle cx="600" cy="360" r="150" fill="none" stroke="#B58A3A" stroke-width="2"/>
+  <text x="600" y="378" text-anchor="middle" font-family="Georgia, serif" font-size="72" fill="#B58A3A">ZF</text>
+  <text x="600" y="600" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#FAF8F3">Image provisoire</text>
+  <text x="600" y="642" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" letter-spacing="6" fill="#9C978D">ZOUHRI FRAGRANCE</text>
+</svg>
