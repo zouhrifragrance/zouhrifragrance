@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
 
   if (!url || !anonKey) {
-    if (pathname.startsWith("/admin")) {
+    if (pathname.startsWith("/admin") && pathname !== "/admin/connexion") {
       const redirectUrl = request.nextUrl.clone();
       redirectUrl.pathname = "/admin/connexion";
       redirectUrl.searchParams.set("configuration", "1");
