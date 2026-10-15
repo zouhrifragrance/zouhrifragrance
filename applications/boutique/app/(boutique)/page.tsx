@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TitreSection } from "@/components/boutique/titre-section";
 import { GrilleProduits } from "@/components/boutique/grille-produits";
+import { ApparitionElement, ApparitionGroupe } from "@/components/boutique/apparition";
 import { ImageProduit } from "@/components/brand/image-produit";
 import { construireArbre, listerCategories } from "@/services/categories";
 import { listerNouveautes, listerMeilleuresVentes, listerProduitsMisEnAvant } from "@/services/produits";
@@ -31,12 +32,12 @@ export default async function PageAccueil() {
     <div className="pb-4">
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-bordure bg-noir text-ivoire">
-        <div className="absolute inset-0 opacity-[0.12]">
+        <div className="absolute inset-0 opacity-[0.10]">
           <Image
-            src="/images/categorie-provisoire.svg"
+            src="/images/arrireplan.jpg"
             alt=""
             fill
-            className="object-cover"
+            className="object-none"
             aria-hidden="true"
           />
         </div>
@@ -70,7 +71,7 @@ export default async function PageAccueil() {
           <div className="relative mx-auto w-full max-w-md">
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-or/25 bg-noir-doux">
               <ImageProduit
-                src="/images/categorie-provisoire.svg"
+                src="/images/acceuil.jpg"
                 alt="Univers ZOUHRI FRAGRANCE (visuel provisoire)"
                 sizes="(max-width: 1024px) 80vw, 40vw"
                 priority
@@ -135,30 +136,31 @@ export default async function PageAccueil() {
             titre="Nos catégories"
             description="Parcourez nos univers, des parfums aux coffrets cadeaux."
           />
-          <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+          <ApparitionGroupe className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
             {arbre
               .flatMap((cat) => [cat, ...cat.enfants])
               .slice(0, 8)
               .map((cat) => (
-                <Link
-                  key={cat.id}
-                  href={`/categories/${cat.slug}`}
-                  className="group relative flex aspect-[4/3] items-end overflow-hidden rounded-xl border border-bordure bg-noir"
-                >
-                  <ImageProduit
-                    src={cat.image_url ?? "/images/categorie-provisoire.svg"}
-                    alt={cat.nom}
-                    sizes="(max-width: 640px) 50vw, 25vw"
-                    className="absolute inset-0 opacity-70 transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-noir/85 to-transparent" />
-                  <div className="relative p-4">
-                    <h3 className="font-serif text-lg text-ivoire">{cat.nom}</h3>
-                    <span className="text-xs text-or-clair">Découvrir →</span>
-                  </div>
-                </Link>
+                <ApparitionElement key={cat.id}>
+                  <Link
+                    href={`/categories/${cat.slug}`}
+                    className="group relative flex aspect-[4/3] items-end overflow-hidden rounded-xl border border-bordure bg-noir"
+                  >
+                    <ImageProduit
+                      src={cat.image_url ?? "/images/categorie-provisoire.svg"}
+                      alt={cat.nom}
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                      className="absolute inset-0 opacity-70 transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-noir/85 to-transparent" />
+                    <div className="relative p-4">
+                      <h3 className="font-serif text-lg text-ivoire">{cat.nom}</h3>
+                      <span className="text-xs text-or-clair">Découvrir →</span>
+                    </div>
+                  </Link>
+                </ApparitionElement>
               ))}
-          </div>
+          </ApparitionGroupe>
         </section>
       ) : null}
 
@@ -177,22 +179,24 @@ export default async function PageAccueil() {
               </Button>
             }
           />
-          <GrilleProduits produits={nouveautes.slice(0, 8)} />
+          <GrilleProduits produits={nouveautes.slice(0, 8)} anime />
         </section>
       ) : null}
 
       {/* Sélection */}
       {selection ? (
         <section className="border-y border-bordure bg-white">
-          <div className="container-luxe grid items-center gap-8 py-12 lg:grid-cols-2 lg:py-16">
-            <div className="relative aspect-[4/5] max-w-md overflow-hidden rounded-2xl border border-bordure bg-ivoire">
-              <ImageProduit
-                src={selection.images_produits?.find((i) => i.est_principale)?.url ?? selection.images_produits?.[0]?.url}
-                alt={selection.nom}
-                sizes="(max-width: 1024px) 80vw, 40vw"
-              />
-            </div>
-            <div className="space-y-4">
+          <ApparitionGroupe className="container-luxe grid items-center gap-8 py-12 lg:grid-cols-2 lg:py-16">
+            <ApparitionElement>
+              <div className="relative aspect-[4/5] max-w-md overflow-hidden rounded-2xl border border-bordure bg-ivoire">
+                <ImageProduit
+                  src={selection.images_produits?.find((i) => i.est_principale)?.url ?? selection.images_produits?.[0]?.url}
+                  alt={selection.nom}
+                  sizes="(max-width: 1024px) 80vw, 40vw"
+                />
+              </div>
+            </ApparitionElement>
+            <ApparitionElement className="space-y-4">
               <Badge variant="default">Sélection de la maison</Badge>
               <h2 className="font-serif text-3xl">{selection.nom}</h2>
               <p className="text-sm leading-relaxed text-gris sm:text-base">
@@ -212,8 +216,8 @@ export default async function PageAccueil() {
                   <Link href="/boutique">Toute la boutique</Link>
                 </Button>
               </div>
-            </div>
-          </div>
+            </ApparitionElement>
+          </ApparitionGroupe>
         </section>
       ) : null}
 
@@ -232,14 +236,14 @@ export default async function PageAccueil() {
               </Button>
             }
           />
-          <GrilleProduits produits={meilleuresVentes} />
+          <GrilleProduits produits={meilleuresVentes} anime />
         </section>
       ) : null}
 
       {/* Éditorial */}
-      <section className="bg-noir text-ivoire">
-        <div className="container-luxe grid gap-8 py-14 lg:grid-cols-2 lg:items-center">
-          <div className="space-y-4">
+      <section className="overflow-hidden bg-noir text-ivoire">
+        <ApparitionGroupe className="container-luxe grid gap-8 py-14 lg:grid-cols-2 lg:items-center">
+          <ApparitionElement direction="gauche" className="space-y-4">
             <p className="text-xs uppercase tracking-luxe text-or-clair">L&apos;univers ZOUHRI</p>
             <h2 className="font-serif text-3xl text-ivoire">
               Le parfum, une signature intemporelle
@@ -252,16 +256,20 @@ export default async function PageAccueil() {
             <Button asChild variant="outline" className="border-ivoire/40 text-ivoire hover:bg-ivoire/10 hover:text-ivoire">
               <Link href="/contact">Nous contacter</Link>
             </Button>
-          </div>
+          </ApparitionElement>
           <div className="grid grid-cols-2 gap-4">
-            <div className="relative aspect-square overflow-hidden rounded-xl border border-or/20">
-              <ImageProduit src="/images/produit-provisoire.svg" alt="Visuel provisoire" sizes="40vw" />
-            </div>
-            <div className="relative mt-6 aspect-square overflow-hidden rounded-xl border border-or/20">
-              <ImageProduit src="/images/produit-provisoire.svg" alt="Visuel provisoire" sizes="40vw" />
-            </div>
+            <ApparitionElement direction="droite">
+              <div className="relative aspect-square overflow-hidden rounded-xl border border-or/20">
+                <ImageProduit src="/images/produit-provisoire.svg" alt="Visuel provisoire" sizes="40vw" />
+              </div>
+            </ApparitionElement>
+            <ApparitionElement direction="droite" className="mt-6">
+              <div className="relative aspect-square overflow-hidden rounded-xl border border-or/20">
+                <ImageProduit src="/images/produit-provisoire.svg" alt="Visuel provisoire" sizes="40vw" />
+              </div>
+            </ApparitionElement>
           </div>
-        </div>
+        </ApparitionGroupe>
       </section>
     </div>
   );
