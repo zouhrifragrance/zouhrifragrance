@@ -9,6 +9,11 @@ out/
 build/
 dist/
 
+# Cloudflare / OpenNext
+.open-next/
+.wrangler/
+.dev.vars
+
 # Environnement (ne jamais committer de secrets)
 .env
 .env.local

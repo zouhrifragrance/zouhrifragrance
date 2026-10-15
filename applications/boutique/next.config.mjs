@@ -13,6 +13,7 @@ const nextConfig = {
   poweredByHeader: false,
   allowedDevOrigins: ["192.168.100.99", "*.local", "localhost"],
   images: {
+    unoptimized: true,
     remotePatterns: [
       ...(supabaseHost
         ? [{ protocol: "https", hostname: supabaseHost }]
@@ -50,3 +51,6 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+initOpenNextCloudflareForDev();
